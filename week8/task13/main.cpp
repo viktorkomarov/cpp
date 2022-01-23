@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <numeric>
-#include <vector>
+#include <deque>
 #include <sstream>
 #include <algorithm>
 
@@ -13,19 +13,23 @@ int main()
     int q;
     std::cin >> q;
 
-    std::stringstream ss;
-    ss << std::to_string(init);
+    std::deque<std::string> elems;
+    elems.push_back(std::to_string(init));
     while (q--)
     {
-        std::stringstream tempstream;
-        char op;
         int num;
+        char op;
         std::cin >> op >> num;
-        tempstream << "(" << ss.str() << ")" << " " << op << " " << std::to_string(num);
-        ss.swap(tempstream);
+        std::stringstream ss;
+        ss << op << " " << std::to_string(num);
+     
+        elems.push_front("(");
+        elems.push_back(") ");
+        elems.push_back(ss.str());
     }
 
-    std::cout << ss.str() << std::endl;
+    for (const auto& str : elems) std::cout << str;
+    std::cout << std::endl;
 
     return 0;   
 }
