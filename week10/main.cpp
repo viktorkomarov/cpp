@@ -8,6 +8,9 @@
 using namespace std;
 
 string ParseEvent(istream& is) {
+  while(is.peek() == ' ') {
+      is.ignore(1);
+  }
   string event;
   std::getline(is, event);
   return event;

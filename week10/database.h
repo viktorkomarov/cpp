@@ -4,15 +4,19 @@
 #include <vector>
 #include <iostream>
 #include "date.h"
+#include <string>
+#include <functional>
 #include <utility>
+
+
+using queryPredic = std::function<bool(const Date& date, const std::string& event)>;
 
 class Database {
 public:
     void Add(const Date& date, const std::string& event);
-    template<typename Op> size_t RemoveIf(Op predic);
+    size_t RemoveIf(queryPredic predic);
     void Print(std::ostream& os)const;
-    template<typename Op>
-    std::vector<std::pair<Date, std::string>> FindIf(Op predic);
+    std::vector<std::pair<Date, std::string>> FindIf(queryPredic predic);
     std::pair<Date, std::string> Last(const Date& date)const;
 
 private:

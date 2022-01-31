@@ -42,7 +42,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.6"
 				},
 				{
 					"fragment" : "-std=gnu++14"
@@ -52,7 +52,7 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/home/viktor/cpp/week10/."
+					"path" : "/Users/vikomarov/cpp/week10/."
 				}
 			],
 			"language" : "CXX",

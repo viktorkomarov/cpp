@@ -52,8 +52,7 @@ Date ParseDate(std::istringstream& date_stream) {
     date_stream.ignore(1);
 
     int day;
-    ok = ok && (date_stream.peek() == ' ');
-    date_stream.ignore(1);
+    ok = ok && (date_stream >> day);
 
     if (!ok) {
         throw std::logic_error("Wrong date format");

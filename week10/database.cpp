@@ -17,12 +17,14 @@ void Database::Print(std::ostream& os) const {
     }
 }
 
-template <typename Op> size_t Database::RemoveIf(Op predic) {
+size_t Database::RemoveIf(queryPredic predic) {
     auto it = std::remove_if(std::begin(seq_scan), std::end(seq_scan), [predic](const auto& item) {
         return predic(item.first, item.second);
     });
     for(auto from = it; it != seq_scan.end(); ++it) {
-        storage[from->first].erase(from->second);
+        storage[from->first].erase(std::remove(
+                storage[from->first].begin(), storage[from->first].end(),
+                from->second));
         unique_date_events[from->first].erase(from->second);
 
         if(storage[from->first].size() == 0) {
@@ -36,8 +38,10 @@ template <typename Op> size_t Database::RemoveIf(Op predic) {
 }
 
 std::pair<Date, std::string> Database::Last(const Date& date) const{
-    auto it = std::lower_bound(std::begin(storage), std::end(storage), date, [](const Date& item, const Date& date) {
-       return date < item;
+    auto it = std::lower_bound(
+            std::begin(storage), std::end(storage),
+            date, [](const auto& item, const Date& date) {
+       return date < item.first;
     });
     if (it == std::end(storage)) throw std::invalid_argument("no dates");
 
@@ -47,9 +51,10 @@ std::pair<Date, std::string> Database::Last(const Date& date) const{
 std::ostream& operator<<(std::ostream& os, std::pair<Date, std::string> pair)
 {
     os << pair.first << " " << pair.second;
+    return os;
 }
 
-template <typename Op> std::vector<std::pair<Date, std::string>> Database::FindIf(Op predic)
+std::vector<std::pair<Date, std::string>> Database::FindIf(queryPredic predic)
 {
     std::vector<std::pair<Date, std::string>> copies;
     auto it = std::copy_if(std::begin(seq_scan), std::end(seq_scan), std::back_inserter(copies),[predic](const auto& item) {
