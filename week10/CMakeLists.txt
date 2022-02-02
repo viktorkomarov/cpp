@@ -11,4 +11,4 @@ add_executable(week10
         condition_parser_test.cpp
         main.cpp
         token.cpp
-        token.h database.h node.h date.h test_runner.h date.cpp database.cpp node.cpp)
+        token.h database.h node.h date.h test_runner.h date.cpp database.cpp node.cpp database_test.cpp)

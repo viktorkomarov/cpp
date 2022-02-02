@@ -26,3 +26,5 @@ private:
 };
 
 std::ostream& operator<<(std::ostream& os, std::pair<Date, std::string>);
+
+void TestDatabaseAdd();

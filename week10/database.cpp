@@ -18,10 +18,11 @@ void Database::Print(std::ostream& os) const {
 }
 
 size_t Database::RemoveIf(queryPredic predic) {
-    auto it = std::remove_if(std::begin(seq_scan), std::end(seq_scan), [predic](const auto& item) {
-        return predic(item.first, item.second);
-    });
-    for(auto from = it; it != seq_scan.end(); ++it) {
+    std::vector<std::pair<Date, std::string>> copies;
+    auto it = std::remove_copy_if(std::begin(seq_scan), std::end(seq_scan),
+                                  std::back_inserter(copies),
+          [predic](const auto& item) {return !predic(item.first, item.second);});
+    for(auto from = std::begin(copies); from != std::end(copies); ++from) {
         storage[from->first].erase(std::remove(
                 storage[from->first].begin(), storage[from->first].end(),
                 from->second));
@@ -31,19 +32,15 @@ size_t Database::RemoveIf(queryPredic predic) {
             storage.erase(from->first);
         }
     }
-    size_t count = seq_scan.end() - it;
-    seq_scan.erase(it, std::end(seq_scan));
+    seq_scan.erase(std::next(std::begin(seq_scan), copies.size()), std::end(seq_scan));
 
-    return count;
+    return copies.size();
 }
 
 std::pair<Date, std::string> Database::Last(const Date& date) const{
-    auto it = std::lower_bound(
-            std::begin(storage), std::end(storage),
-            date, [](const auto& item, const Date& date) {
-       return date < item.first;
-    });
-    if (it == std::end(storage)) throw std::invalid_argument("no dates");
+    auto it = storage.lower_bound(date);
+    if (it == storage.begin() && !(it->first == date)) throw std::invalid_argument("no dates");
+    if (it == storage.end()) it = std::prev(it);
 
     return std::make_pair(it->first,*std::prev(std::end(it->second)));
 }
@@ -60,6 +57,7 @@ std::vector<std::pair<Date, std::string>> Database::FindIf(queryPredic predic)
     auto it = std::copy_if(std::begin(seq_scan), std::end(seq_scan), std::back_inserter(copies),[predic](const auto& item) {
         return predic(item.first, item.second);
     });
+    std::sort(std::begin(copies), std::end(copies));
 
     return copies;
 }
