@@ -16,8 +16,7 @@ void Database::Print(std::ostream& os) const {
         }
     }
 }
-
-size_t Database::RemoveIf(queryPredic predic) {
+template<typename Functor> size_t Database::RemoveIf(Functor predic) {
     std::vector<std::pair<Date, std::string>> copies;
     auto it = std::remove_copy_if(std::begin(seq_scan), std::end(seq_scan),
                                   std::back_inserter(copies),
@@ -51,7 +50,7 @@ std::ostream& operator<<(std::ostream& os, std::pair<Date, std::string> pair)
     return os;
 }
 
-std::vector<std::pair<Date, std::string>> Database::FindIf(queryPredic predic)
+template<typename Functor> std::vector<std::pair<Date, std::string>> Database::FindIf(Functor predic)
 {
     std::vector<std::pair<Date, std::string>> copies;
     auto it = std::copy_if(std::begin(seq_scan), std::end(seq_scan), std::back_inserter(copies),[predic](const auto& item) {
