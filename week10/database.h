@@ -8,15 +8,19 @@
 #include <functional>
 #include <utility>
 
+<<<<<<< HEAD
 
 using queryPredic = std::function<bool(Date date, std::string event)>;
 
+=======
+>>>>>>> bef763344d4fab23383fc27c313257daa9009eae
 class Database {
 public:
     void Add(const Date& date, const std::string& event);
-    size_t RemoveIf(queryPredic predic);
+    template<class Functor> size_t RemoveIf(Functor predic);
     void Print(std::ostream& os)const;
-    std::vector<std::pair<Date, std::string>> FindIf(queryPredic predic);
+
+    template<class Functor> std::vector<std::pair<Date, std::string>> FindIf(Functor predic);
     std::pair<Date, std::string> Last(const Date& date)const;
 
 private:
