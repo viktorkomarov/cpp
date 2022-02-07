@@ -9,7 +9,7 @@
 #include <utility>
 
 
-using queryPredic = std::function<bool(const Date& date, const std::string& event)>;
+using queryPredic = std::function<bool(Date date, std::string event)>;
 
 class Database {
 public:

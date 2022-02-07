@@ -40,7 +40,7 @@ std::ostream& operator<<(std::ostream& stream, const Date& date) {
 
 bool ok = true;
 
-Date ParseDate(std::istringstream& date_stream) {
+Date ParseDate(std::istream& date_stream) {
     int year;
     ok = ok && (date_stream >> year);
     ok = ok && (date_stream.peek() == '-');

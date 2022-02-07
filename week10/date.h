@@ -15,7 +15,7 @@ private:
     int day;
 };
 
-Date ParseDate(std::istringstream& date_stream);
+Date ParseDate(std::istream& date_stream);
 
 bool operator<(const Date& lhs, const Date& rhs);
 
