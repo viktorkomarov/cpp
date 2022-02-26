@@ -1,3 +1,7 @@
 ToolSet: 1.0 (local)Options: 
 
+<<<<<<< HEAD
 Options:-DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja
+=======
+Options:-DCMAKE_MAKE_PROGRAM=/home/viktor/Downloads/CLion-2021.3.2/clion-2021.3.2/bin/ninja/linux/ninja
+>>>>>>> 561a322701c33f231cf912427161dde1d80dbd35

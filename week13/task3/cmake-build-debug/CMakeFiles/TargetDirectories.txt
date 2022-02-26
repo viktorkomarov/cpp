@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 /Users/vikomarov/cpp/week13/task3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/vikomarov/cpp/week13/task3/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/vikomarov/cpp/week13/task3/cmake-build-debug/CMakeFiles/task3.dir
+=======
+/home/viktor/cpp/week13/task3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/viktor/cpp/week13/task3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/viktor/cpp/week13/task3/cmake-build-debug/CMakeFiles/task3.dir
+>>>>>>> 561a322701c33f231cf912427161dde1d80dbd35

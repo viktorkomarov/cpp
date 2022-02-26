@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: /Users/vikomarov/cpp/week13/task3
+=======
+# Install script for directory: /home/viktor/cpp/week13/task3
+>>>>>>> 561a322701c33f231cf912427161dde1d80dbd35
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,6 +31,14 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+<<<<<<< HEAD
+=======
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
+endif()
+
+>>>>>>> 561a322701c33f231cf912427161dde1d80dbd35
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
@@ -34,7 +46,11 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
+<<<<<<< HEAD
   set(CMAKE_OBJDUMP "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump")
+=======
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
+>>>>>>> 561a322701c33f231cf912427161dde1d80dbd35
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +61,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "/Users/vikomarov/cpp/week13/task3/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "/home/viktor/cpp/week13/task3/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> 561a322701c33f231cf912427161dde1d80dbd35
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
